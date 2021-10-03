@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification app</title>
+</head>
+<body>
+    <h2>Hello there</h2>
+    <h3>Notifications go below...</h3>
+    <ul id="notifications">
+        <li clas="madness">Something</li>
+    </ul>
+    {{ room_name|json_script:"room-name" }}
+    <script>
+        const roomName = JSON.parse(document.getElementById('room-name').textContent);
+
+        const notificationSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/notifications/'
+            + roomName
+            + '/'
+        );
+
+        notificationSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            console.log(data)
+            document.getElementById("notifications").innerHTML = "<li class='madness'>" + data.message + "</li>" + document.getElementById("notifications").innerHTML
+            // adocument.querySelector('#chat-log').value += (data.message + '\n');
+        };
+
+        notificationSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+    </script>
+</body>
+</html>
