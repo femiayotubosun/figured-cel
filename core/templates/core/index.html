@@ -28,7 +28,6 @@
 
         notificationSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
-            console.log(data)
             document.getElementById("notifications").innerHTML = "<li class='madness'>" + data.message + "</li>" + document.getElementById("notifications").innerHTML
             // adocument.querySelector('#chat-log').value += (data.message + '\n');
         };
