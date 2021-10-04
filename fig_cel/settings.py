@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    # 'notify_app',
+    'notify_app',
     'channels',
     'django_celery_results',
     'django_celery_beat',
@@ -153,7 +153,7 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Africa/Lagos'
-CELERY_RESULT_BACKEND = 'django'
+CELERY_RESULT_BACKEND = 'django-db'
 
 # --------------------------- CELERY BEAT SETTINGS --------------------------- #
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'

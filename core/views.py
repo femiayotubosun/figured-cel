@@ -18,13 +18,6 @@ def test(request):
             'message': 'Notification',
         }
     )
-    return HttpResponse("done")
-
-
-def taker(request):
-    test_func.delay()
-    return HttpResponse("Done")
-
 
 
 # TODO:
